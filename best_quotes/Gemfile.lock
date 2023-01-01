@@ -1,0 +1,24 @@
+PATH
+  remote: ../rulers
+  specs:
+    rulers (0.1.0)
+      rack
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    rack (3.0.3)
+    rackup (0.2.3)
+      rack (>= 3.0.0.beta1)
+      webrick
+    webrick (1.7.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  rackup
+  rulers!
+
+BUNDLED WITH
+   1.17.3

@@ -1,0 +1,3 @@
+source :rubygems
+gem 'rackup'
+gem 'rulers', path: '../rulers'
