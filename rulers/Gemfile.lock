@@ -2,11 +2,17 @@ PATH
   remote: .
   specs:
     rulers (0.1.0)
+      pry
       rack
 
 GEM
   remote: https://rubygems.org/
   specs:
+    coderay (1.1.3)
+    method_source (1.0.0)
+    pry (0.14.1)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
     rack (3.0.3)
     rack-test (2.0.2)
       rack (>= 1.3)
