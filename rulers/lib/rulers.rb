@@ -1,5 +1,7 @@
 require "rulers/version"
 require "rulers/routing"
+require 'rulers/util'
+require 'rulers/dependencies'
 
 module Rulers
   class Application
@@ -20,6 +22,8 @@ module Rulers
     end
   end
   
+  # base class for all controllers
+  # ensures that they're all initialized with a Rake env
   class Controller
     def initialize(env)
       @env = env
