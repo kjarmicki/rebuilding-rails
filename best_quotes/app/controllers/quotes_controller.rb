@@ -1,7 +1,10 @@
 class QuotesController < Rulers::Controller
   def a_quote
-    "<div>There is nothing either good or bad but thinking makes it so</div>" +
-      "\n<pre>#{env}\n</pre>"
+    render :a_quote, {
+      noun: :winking,
+      controller_name: self.class.name,
+      rulers_gem_version: Rulers::VERSION
+    }
   end
 
   def exception

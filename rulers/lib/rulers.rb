@@ -2,6 +2,7 @@ require "rulers/version"
 require "rulers/routing"
 require 'rulers/util'
 require 'rulers/dependencies'
+require 'rulers/controller'
 
 module Rulers
   class Application
@@ -20,17 +21,5 @@ module Rulers
       [200, {'content-type' => 'text/html'},
         [text]]
     end
-  end
-  
-  # base class for all controllers
-  # ensures that they're all initialized with a Rake env
-  class Controller
-    def initialize(env)
-      @env = env
-    end
-
-    def env
-      @env
-    end
-  end
+  end  
 end
