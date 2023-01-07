@@ -1,9 +1,12 @@
 require 'erubis'
+require 'rulers/file_model'
 
 module Rulers
   # base class for all controllers
   # ensures that they're all initialized with a Rake env
   class Controller
+    include Rulers::Model # makes FileModel available in the controllers
+
     def initialize(env)
       @env = env
     end
