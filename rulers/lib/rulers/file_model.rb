@@ -3,6 +3,8 @@ require 'multi_json'
 module Rulers
   module Model
     class FileModel
+      CACHE = {}
+
       def initialize(filename)
         @filename = filename
 
@@ -28,8 +30,11 @@ module Rulers
       end
 
       def self.find(id)
+        return CACHE[id] if CACHE.has_key?(id)
         begin
-          FileModel.new("db/quotes/#{id}.json")
+          model = FileModel.new("db/quotes/#{id}.json")
+          CACHE[id] = model
+          return model
         rescue
           return nil
         end
