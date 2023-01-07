@@ -57,6 +57,26 @@ TEMPLATE
 
         FileModel.new "db/quotes/#{id}.json"
       end
+
+      def self.update(attrs)
+        hash = {}
+        id = attrs['id']
+        original = self.find(id)
+        ['submitter', 'quote', 'attribution'].each do |prop|
+          hash[prop] = attrs[prop] || original[prop]
+        end
+        File.open("db/quotes/#{id}.json", 'w') do |f|
+          f.write <<TEMPLATE
+            {
+              "submitter": "#{hash["submitter"]}",
+              "quote": "#{hash["quote"]}",
+              "attribution": "#{hash["attribution"]}"
+            }
+TEMPLATE
+        end
+
+        FileModel.new "db/quotes/#{id}.json"
+      end
     end
   end
 end

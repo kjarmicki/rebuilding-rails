@@ -10,8 +10,17 @@ class QuotesController < Rulers::Controller
       'quote' => 'a picture is worth a thousand pixels',
       'attribution' => 'me'
     }
-    m = FileModel.create(attrs)
-    render :quote, { obj: m }
+    file_model = FileModel.create(attrs)
+    render :quote, { obj: file_model }
+  end
+
+  def update_quote
+    id = 3
+    file_model = FileModel.find(id)
+    file_model['id'] = id
+    file_model['submitter'] = 'somebody'
+    updated_model = FileModel.update(file_model)
+    render :quote, { obj: updated_model }
   end
 
   def a_quote
