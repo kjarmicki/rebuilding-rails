@@ -36,6 +36,11 @@ class QuotesController < Rulers::Controller
     render :quote, { obj: quote_1 }
   end
 
+  def quotes_by_somebody
+    quotes = FileModel.find_all_by_submitter('somebody')
+    render :index, { quotes: quotes }
+  end
+
   def exception
     raise "It's a bad one"
   end

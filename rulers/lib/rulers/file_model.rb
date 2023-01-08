@@ -24,6 +24,18 @@ module Rulers
         @hash[name.to_s] = value
       end
 
+      def self.method_missing(method_name, *args)
+        if method_name.to_s =~ /^find_all_by_(.*)$/
+          return self.all().select { |quote| quote[$1] == args[0] }
+        else
+          super
+        end
+      end
+
+      def self.respond_to?(method_name, include_private = false)
+        method_name.to_s.start_with?('find_all_by_') || super
+      end
+
       def self.all
         files = Dir['db/quotes/*.json']
         files.map { |f| FileModel.new(f) }
