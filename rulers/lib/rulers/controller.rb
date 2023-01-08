@@ -1,4 +1,6 @@
 require 'erubis'
+require 'rack/request'
+require 'rack/response'
 require 'rulers/file_model'
 
 module Rulers
@@ -13,6 +15,28 @@ module Rulers
 
     def env
       @env
+    end
+
+    def request
+      @request ||= Rack::Request.new(@env)
+    end
+
+    def response(text, status = 200, headers = {})
+      raise "Already responded!" if @response
+      response_text = [text].flatten
+      @response = Rack::Response.new(response_text, status, headers)
+    end
+
+    def get_response
+      @response
+    end
+
+    def params
+      request.params # this call is the same as self.request().params
+    end
+
+    def render_response(*args) # *args in definition - rest
+      response(render(*args)) # *args in method call - spread
     end
 
     def render(view_name, locals = {})

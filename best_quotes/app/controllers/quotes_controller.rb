@@ -31,9 +31,9 @@ class QuotesController < Rulers::Controller
     }
   end
 
-  def quote_1
-    quote_1 = FileModel.find(1)
-    render :quote, { obj: quote_1 }
+  def show
+    quote = FileModel.find(params['id'])
+    render_response :quote, { obj: quote }
   end
 
   def quotes_by_somebody

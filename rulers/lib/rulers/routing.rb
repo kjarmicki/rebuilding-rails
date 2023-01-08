@@ -1,5 +1,3 @@
-require 'pry'
-
 module Rulers
   class Application
     def get_controller_and_action(env)
