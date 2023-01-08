@@ -24,7 +24,7 @@ module Rulers
         [status, headers, response]
       else
         [200, {'content-type' => 'text/html'},
-          [text]]
+          [controller.render(act)]]
       end
     end
   end  

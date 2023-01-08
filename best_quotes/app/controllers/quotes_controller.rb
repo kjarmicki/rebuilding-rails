@@ -41,6 +41,9 @@ class QuotesController < Rulers::Controller
     render :index, { quotes: quotes }
   end
 
+  def static_quote
+  end
+
   def exception
     raise "It's a bad one"
   end
