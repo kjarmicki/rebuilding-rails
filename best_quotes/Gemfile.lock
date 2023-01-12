@@ -6,6 +6,7 @@ PATH
       multi_json
       pry
       rack
+      sqlite3 (= 1.4.4)
 
 GEM
   remote: http://rubygems.org/
@@ -30,6 +31,7 @@ GEM
       ffi (~> 1.0)
     rerun (0.13.1)
       listen (~> 3.0)
+    sqlite3 (1.4.4)
     webrick (1.7.0)
 
 PLATFORMS
