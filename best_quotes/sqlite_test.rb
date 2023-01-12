@@ -10,16 +10,20 @@ puts MyTable.schema.inspect
 #   'body' => 'it did'
 # })
 
-mt = MyTable.create({
-  'title' => 'i saw it'
-})
-mt['title'] = 'i really did'
-mt.save!
+# mt = MyTable.create({
+#   'title' => 'i saw it'
+# })
+# mt['title'] = 'i really did'
+# mt.save!
 
 puts "Count: #{MyTable.count}"
 
-top_id = mt['id'].to_i
-(1..top_id).each do |id|
-  mt_id = MyTable.find(id)
-  puts "Found title #{mt_id["title"]}."
-end
+# top_id = mt['id'].to_i
+# (1..top_id).each do |id|
+#   mt_id = MyTable.find(id)
+#   puts "Found title #{mt_id["title"]}."
+# end
+
+mt1 = MyTable.find(1)
+mt1.title = "Changed at #{Time.now()}"
+puts mt1.title
