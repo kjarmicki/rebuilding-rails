@@ -15,17 +15,8 @@ module Rulers
       end
 
 
-      # a, b = c() is a way of simulating multiple return values by returning an array
-      klass, act = get_controller_and_action(env)
-      controller = klass.new(env)
-      text = controller.send(act)
-      if controller.get_response()
-        status, headers, response = controller.get_response().to_a
-        [status, headers, response]
-      else
-        [200, {'content-type' => 'text/html'},
-          [controller.render(act)]]
-      end
+      rack_app = get_rack_app(env)
+      rack_app.call(env)
     end
   end  
 end

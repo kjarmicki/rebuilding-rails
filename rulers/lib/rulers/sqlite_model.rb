@@ -21,9 +21,9 @@ module Rulers
       def method_missing(method_name, *args, &block)
         method_name = method_name.to_s
         if method_name.end_with?('=')
-          return @hash[method_name[0...-1]] = args[0]
+          return self[method_name[0...-1]] = args[0]
         end
-        @hash[method_name]
+        self[method_name]
       end
 
       def save!

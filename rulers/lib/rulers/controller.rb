@@ -11,6 +11,11 @@ module Rulers
 
     def initialize(env)
       @env = env
+      @routing_params = {}
+    end
+
+    def self.action(act, response = {})
+      proc { |e| self.new(e).dispatch(act, response) }
     end
 
     def env
@@ -32,7 +37,18 @@ module Rulers
     end
 
     def params
-      request.params # this call is the same as self.request().params
+      request.params.merge(@routing_params)
+    end
+
+    def dispatch(action, routing_params = {})
+      @routing_params = routing_params
+      text = self.send(action)
+      if get_response()
+        status_code, headers, response = get_response().to_a
+        [status_code, headers, response]
+      else
+        [200, {'content-type' => 'text/html'}, [text]] 
+      end
     end
 
     def render_response(*args) # *args in definition - rest
